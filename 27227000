@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Love Story</title>
+<style>
+body {
+    margin:0;
+    font-family:cursive;
+    overflow:hidden;
+}
+
+/* pages */
+.page {
+    width:100%;
+    height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    position:absolute;
+}
+
+/* blur background */
+.page::before {
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url('https://i.ibb.co/7QpKsCX/flowers.jpg') no-repeat center/cover;
+    filter: blur(8px);
+    z-index:-1;
+}
+
+/* colors */
+#page1 { background: linear-gradient(pink, red); display:flex; }
+#page2 { background: linear-gradient(blue, purple); color:white; }
+#page3 { background: linear-gradient(blue, purple); color:white; }
+
+/* buttons */
+.btn {
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* text box */
+.box {
+    margin-top:20px;
+    padding:15px;
+    border:2px solid white;
+}
+
+/* lyrics */
+#lyrics p {
+    opacity:0;
+    transition:1s;
+    font-size:22px;
+}
+.show {
+    opacity:1 !important;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ❤️ PAGE 1 -->
+<div id="page1" class="page">
+    <h1 style="color:purple;">meri sweetheart, Ranjhe 💜</h1>
+    <button class="btn" onclick="showPage(2)">Click Here</button>
+</div>
+
+<!-- 💙 PAGE 2 -->
+<div id="page2" class="page">
+    <div>
+    meri priyee radhe 💙😭😥 <br><br>
+    2 din main hi kya haal ho gaya tha mera...  
+    mera kisi kaam main mann hi nahi lag raha tha,  
+    jaise saanse hi atak gayi thi...  
+
+    sach main radhe tumhare bina bahut bura haal ho gaya tha mera...  
+
+    dukh is baat ka zyada tha ki  
+    mera first time kisi se itna attach hua hu...  
+
+    priyee mera dard samajh rahi ho na 💔  
+
+    <br><br>
+    Lagega time mujhe pata hai...
+
+    <div class="box">
+        nhi ho raha hai na tumhe theek... suno to 💭
+    </div>
+
+    <button class="btn" onclick="showPage(3)">Click Here</button>
+    </div>
+</div>
+
+<!-- 🎵 PAGE 3 -->
+<div id="page3" class="page">
+
+    <!-- lyrics hidden initially -->
+    <div id="lyrics">
+        <p>💖 Tum hi ho...</p>
+        <p>💕 Ab tum hi ho...</p>
+        <p>😭 Zindagi ab tum hi ho...</p>
+        <p>💔 Chain bhi, mera dard bhi...</p>
+        <p>😢 Meri aashiqui ab tum hi ho...</p>
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="toggleMusic()">▶️ Play</button>
+
+    <!-- ⚠️ No default song -->
+    <audio id="song" loop></audio>
+
+</div>
+
+<script>
+function showPage(num){
+    document.querySelectorAll(".page").forEach(p => p.style.display="none");
+    document.getElementById("page"+num).style.display="flex";
+}
+
+/* music + lyrics */
+let isPlaying = false;
+let audio = document.getElementById("song");
+let lines = document.querySelectorAll("#lyrics p");
+let index = 0;
+let interval;
+
+function toggleMusic(){
+    let btn = event.target;
+
+    if(!isPlaying){
+        // 👉 yaha apna song add karna
+        audio.src = "YOUR_SONG.mp3"; 
+        audio.play();
+
+        btn.innerHTML="⏸ Stop";
+        isPlaying=true;
+
+        startLyrics();
+
+    } else {
+        audio.pause();
+        btn.innerHTML="▶️ Play";
+        isPlaying=false;
+
+        clearInterval(interval);
+        lines.forEach(line => line.classList.remove("show"));
+        index = 0;
+    }
+}
+
+function startLyrics(){
+    interval = setInterval(()=>{
+        if(index < lines.length){
+            lines[index].classList.add("show");
+            index++;
+        } else {
+            // loop lyrics again
+            lines.forEach(line => line.classList.remove("show"));
+            index = 0;
+        }
+    }, 2000); // har 2 sec me next line
+}
+</script>
+
+</body>
+</html>
