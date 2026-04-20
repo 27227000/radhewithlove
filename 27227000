@@ -104,11 +104,15 @@ body {
 
     <!-- lyrics hidden initially -->
     <div id="lyrics">
-        <p>💖 Tum hi ho...</p>
-        <p>💕 Ab tum hi ho...</p>
-        <p>😭 Zindagi ab tum hi ho...</p>
-        <p>💔 Chain bhi, mera dard bhi...</p>
-        <p>😢 Meri aashiqui ab tum hi ho...</p>
+        <p>💖 tu subr to kar mere yarr  ...</p>
+        <p>💕 jara sass to le dildar ...</p>
+        <p>😭 chal firnu goli mara ...</p>
+        <p>💔 yarr dil jidgi de charr...</p>
+        <p>😢haule haule ho jayega pyarr chamiya ...</p>
+        <p>😢haule haule ho jayega pyarr ...</p>
+        <p>😢haule haule ho jayega pyarr chamiya ...</p>
+        <p>😢haule haule hmm...</p>
+        <p>😢haule haule...</p>
     </div>
 
     <br>
@@ -138,7 +142,7 @@ function toggleMusic(){
 
     if(!isPlaying){
         // 👉 yaha apna song add karna
-        audio.src = "YOUR_SONG.mp3"; 
+        audio.src=song.mp3; 
         audio.play();
 
         btn.innerHTML="⏸ Stop";
